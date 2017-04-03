@@ -24,6 +24,11 @@ var Post = require('./model/post');
 
 var router = express.Router();
 
+router.use(function (req, res, next) {
+  console.warn(req.method + ' ' + req.url + ' with: ' + JSON.stringify(req.body));
+  next();
+});
+
 app.use('/', express.static(__dirname + '/public'));
 app.use('/libs', express.static(__dirname + '/node_modules/bootstrap/dist'));
 app.use('/libs', express.static(__dirname + '/node_modules/es6_shim/'));
@@ -33,3 +38,4 @@ app.use('/libs', express.static(__dirname + '/node_modules/systemjs/dist'));
 app.use('/libs', express.static(__dirname + '/node_modules/rxjs/'));
 app.use('/libs', express.static(__dirname + '/node_modules/angular2-in-memory-web-api/'));
 app.use('/libs', express.static(__dirname + '/node_modules/@angular/'));
+
